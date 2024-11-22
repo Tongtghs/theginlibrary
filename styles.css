@@ -10,7 +10,7 @@ body, html {
 }
 
 body {
-  background: url('image8.jpg') no-repeat center center fixed;
+  background: url('image1.jpg') no-repeat center center fixed;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -34,12 +34,6 @@ body {
   text-align: center;
 }
 
-/*.logo {*/
-/*  font-size: 3rem;*/
-/*  font-weight: bold;*/
-/*  margin: 0;*/
-/*}*/
-
 .logo {
   width: 180px; /* Adjust as needed for your logo size */
   height: auto;
@@ -56,6 +50,14 @@ body {
   color: #F5F5F5;
 }
 
+.opening-times {
+  font-family: 'Arial', sans-serif; /* Match general body font */
+  font-size: 1.2rem; /* Slightly smaller than the tagline */
+  margin-top: 1rem; /* Space between tagline and opening times */
+  color: #f0e6e6; /* Same color as the tagline for consistency */
+  text-align: center; /* Ensure it aligns properly below the tagline */
+}
+
 /* Footer with Info and Contact */
 .bottom-content {
   position: absolute;
@@ -67,6 +69,7 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   text-align: center;
+  color: #f0e6e6;
 }
 
 .bottom-content div {
