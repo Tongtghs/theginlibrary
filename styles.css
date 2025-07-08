@@ -16,7 +16,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100lvh;
 }
 
 .container {
@@ -28,6 +28,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: env(safe-area-inset-top) 1rem env(safe-area-inset-bottom);
   /*padding-bottom: 0.5rem; !* Ensure the content doesn’t get too close to the footer *!*/
 }
 
