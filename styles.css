@@ -14,6 +14,7 @@ body {
   color: white;
   background: url('image1.jpg') no-repeat center center fixed;
   background-size: cover;
+  background-color: black;
 
   /* Make sure the body covers the FULL real viewport,
      including safe areas on iOS Safari */
