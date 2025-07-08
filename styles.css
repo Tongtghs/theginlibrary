@@ -33,6 +33,9 @@ body {
 
   display: flex;
   flex-direction: column;
+
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* .container {
@@ -58,7 +61,7 @@ body {
   align-items: center;
 
   /* Keep safe area padding here for content */
-  padding: env(safe-area-inset-top) 1rem env(safe-area-inset-bottom);
+  padding: 0 1rem;
   text-align: center;
 }
 
