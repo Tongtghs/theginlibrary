@@ -117,10 +117,10 @@ a:hover {
   .bottom-content {
     font-size: 0.8rem;
     flex-direction: column; /* Stack items vertically on smaller screens */
-    line-height: 1.5;
+    line-height: 1;
 }
 
   .bottom-content div {
-    margin-bottom: 5px;
+    margin-bottom: 1px;
   }
 }
