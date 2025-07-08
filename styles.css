@@ -1,132 +1,112 @@
 /* General Reset */
-* {
+body, html {
   margin: 0;
-  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  color: white;
   box-sizing: border-box;
-}
-
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
+  /*padding-bottom: env(safe-area-inset-bottom); !* Add padding for the safe area *!*/
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  color: white;
   background: url('image1.jpg') no-repeat center center fixed;
   background-size: cover;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Container Overlay */
-.container {
-  flex: 1;
-  background: rgba(0, 0, 0, 0.7); 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: env(safe-area-inset-top) 1rem env(safe-area-inset-bottom);
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Dark overlay on the background image */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*padding-bottom: 0.5rem; !* Ensure the content doesn’t get too close to the footer *!*/
+}
+
+/* Centered Content (Logo and Tagline) */
+.center-content {
   text-align: center;
 }
 
-/* Centered Content */
-.center-content {
-  margin-bottom: 2rem;
+.logo {
+  width: 180px; /* Adjust as needed for your logo size */
+  height: auto;
+  margin: 0 auto; /* Center the logo image */
+  display: block;
 }
 
-.logo {
-  width: 150px;
-  height: auto;
-  max-width: 80%;
-}
 
 .tagline {
   font-family: 'Bodoni Moda', cursive;
   font-size: 1.5rem;
-  margin-top: 1.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
   color: #F5F5F5;
 }
 
 .opening-times {
-  font-size: 1.1rem;
-  margin-top: 0.8rem;
-  color: #f0e6e6;
+  font-family: 'Arial', sans-serif; /* Match general body font */
+  font-size: 1.2rem; /* Slightly smaller than the tagline */
+  margin-top: 1rem; /* Space between tagline and opening times */
+  color: #f0e6e6; /* Same color as the tagline for consistency */
+  text-align: center; /* Ensure it aligns properly below the tagline */
 }
 
-/* Footer Content */
+/* Footer with Info and Contact */
 .bottom-content {
+  position: relative;
+  /*bottom: 20px;*/
+  top: 4rem;
+  bottom: 0;
   width: 100%;
+  /*padding: 1rem 0; !* Add padding for safe spacing *!*/
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem 0;
-  background: rgba(0, 0, 0, 0.5);
+  justify-content: space-around; /* Evenly space the items horizontally */
+  align-items: center;
   font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
   color: #f0e6e6;
 }
 
 .bottom-content div {
-  text-align: center;
-  flex: 1 1 200px;
+  flex: 1; /* Ensure even spacing */
+  text-align: center; /* Center text within each block */
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: inherit; /* Inherit the color from the parent element */
+  text-decoration: none; /* Remove the underline */
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Optional: Add underline on hover for accessibility */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  html {
-    font-size: 14px;
-  }
-
   .logo {
-    width: 120px;
+    font-size: 2.5rem;
   }
 
   .tagline {
-    font-size: 1.2rem;
-  }
-
-  .opening-times {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 
   .bottom-content {
-    flex-direction: column;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-  }
+    font-size: 0.8rem;
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    line-height: 1.5;
 }
 
-@media (max-width: 480px) {
-  html {
-    font-size: 12px;
-  }
-
-  .logo {
-    width: 100px;
-  }
-
-  .tagline {
-    font-size: 1rem;
-  }
-
-  .opening-times {
-    font-size: 0.9rem;
-  }
-
-  .bottom-content {
-    gap: 0.01rem;
-    font-size: 0.8rem;
+  .bottom-content div {
+    margin-bottom: 5px;
   }
 }
