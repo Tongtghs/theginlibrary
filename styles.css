@@ -24,9 +24,6 @@ body {
 
   display: flex;
   flex-direction: column;
-
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Container Overlay */
@@ -39,7 +36,6 @@ body {
   align-items: center;
 
   /* Keep safe area padding here for content */
-  padding: 0 1rem;
   text-align: center;
 }
 
