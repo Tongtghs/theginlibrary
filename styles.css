@@ -19,8 +19,6 @@ body {
   /* Make sure the body covers the FULL real viewport,
      including safe areas on iOS Safari */
   min-height: 100vh;
-  min-height: 100svh;  /* Safari/iOS: Small Viewport Height */
-  min-height: 100lvh;  /* Newer browsers: Large Viewport Height */
 
   display: flex;
   flex-direction: column;
@@ -115,9 +113,5 @@ a:hover {
     font-size: 0.8rem;
     flex-direction: column; /* Stack items vertically on smaller screens */
     line-height: 1;
-}
-
-  .bottom-content div {
-    margin-bottom: 1px;
   }
 }
