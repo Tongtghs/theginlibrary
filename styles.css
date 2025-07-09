@@ -70,7 +70,7 @@ body {
 .bottom-content {
   position: relative;
   /*bottom: 20px;*/
-  top: 4rem;
+  margin-top: 4rem;
   bottom: 0;
   width: 100%;
   /*padding: 1rem 0; !* Add padding for safe spacing *!*/
@@ -109,7 +109,7 @@ a:hover {
   }
 
   .bottom-content {
-    top: 3rem;
+    margin-top: 3rem;
     font-size: 0.8rem;
     flex-direction: column; /* Stack items vertically on smaller screens */
     line-height: 1;
