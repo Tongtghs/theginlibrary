@@ -109,7 +109,7 @@ a:hover {
   }
 
   .bottom-content {
-    top: 2rem;
+    top: 3rem;
     font-size: 0.8rem;
     flex-direction: column; /* Stack items vertically on smaller screens */
     line-height: 1;
