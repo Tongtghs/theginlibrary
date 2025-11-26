@@ -32,8 +32,10 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 1.5rem;
-  padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
+  padding: calc(1.5rem + env(safe-area-inset-top, 0px))
+    calc(1.5rem + env(safe-area-inset-right, 0px))
+    calc(1.5rem + env(safe-area-inset-bottom, 0px))
+    calc(1.5rem + env(safe-area-inset-left, 0px));
 }
 
 .page-overlay {
@@ -195,8 +197,10 @@ body {
 
 @media (max-width: 600px) {
   body {
-    padding: 1rem;
-    padding-top: calc(1rem + env(safe-area-inset-top, 0px));
+    padding: calc(1rem + env(safe-area-inset-top, 0px))
+      calc(1rem + env(safe-area-inset-right, 0px))
+      calc(1rem + env(safe-area-inset-bottom, 0px))
+      calc(1rem + env(safe-area-inset-left, 0px));
   }
 
   .logo {
