@@ -1,119 +1,212 @@
-/* General Reset */
-body, html {
+/* Global setup */
+:root {
+  --bg-overlay: rgba(0, 0, 0, 0.55);
+  --card: rgba(0, 0, 0, 0.6);
+  --accent: #d7c5a5;
+  --text: #f5f5f5;
+  --muted: #dcdcdc;
+  --border: rgba(255, 255, 255, 0.15);
+  --shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
   width: 100%;
   height: 100%;
-  font-family: 'Arial', sans-serif;
-  color: white;
-  box-sizing: border-box;
-  /*padding-bottom: env(safe-area-inset-bottom); !* Add padding for the safe area *!*/
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  color: white;
+  font-family: 'Inter', 'Arial', sans-serif;
+  color: var(--text);
   background: url('image1.jpg') no-repeat center center fixed;
   background-size: cover;
   background-color: black;
-
-  /* Make sure the body covers the FULL real viewport,
-     including safe areas on iOS Safari */
   min-height: 100vh;
   min-height: 100svh;
   min-height: 100lvh;
-
   display: flex;
-  flex-direction: column;
-}
-
-/* Container Overlay */
-.container {
-  flex: 1;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-
-  /* Keep safe area padding here for content */
-  text-align: center;
+  justify-content: center;
+  position: relative;
+  padding: 1.5rem;
 }
 
-/* Centered Content (Logo and Tagline) */
-.center-content {
-  text-align: center;
+.page-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.25));
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1080px;
+  width: min(1080px, 100%);
+  background: var(--bg-overlay);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.hero__brand {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
 }
 
 .logo {
-  width: 180px; /* Adjust as needed for your logo size */
+  width: 170px;
   height: auto;
-  margin: 0 auto; /* Center the logo image */
   display: block;
 }
 
+.eyebrow {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin: 0 0 0.5rem 0;
+}
 
 .tagline {
-  font-family: 'Bodoni Moda', cursive;
-  font-size: 1.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
-  color: #F5F5F5;
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(1.8rem, 2.7vw, 2.4rem);
+  margin: 0;
+  color: var(--text);
 }
 
-.opening-times {
-  font-family: 'Arial', sans-serif; /* Match general body font */
-  font-size: 1.2rem; /* Slightly smaller than the tagline */
-  margin-top: 1rem; /* Space between tagline and opening times */
-  color: #f0e6e6; /* Same color as the tagline for consistency */
-  text-align: center; /* Ensure it aligns properly below the tagline */
-}
-
-/* Footer with Info and Contact */
-.bottom-content {
-  position: relative;
-  /*bottom: 20px;*/
-  margin-top: 4rem;
-  bottom: 0;
-  width: 100%;
-  /*padding: 1rem 0; !* Add padding for safe spacing *!*/
-  display: flex;
-  justify-content: space-around; /* Evenly space the items horizontally */
-  align-items: center;
-  font-size: 1rem;
+.subtitle {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
   line-height: 1.5;
+}
+
+.hero__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.button {
+  padding: 0.8rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.button.primary {
+  background: linear-gradient(135deg, #f6e7d8, #d7c5a5);
+  color: #231c13;
+  border: none;
+}
+
+.info-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.info-block {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 150px;
+}
+
+.label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 0 0 0.5rem 0;
+  font-size: 0.85rem;
+}
+
+.detail {
+  margin: 0.25rem 0;
+  font-size: 1rem;
+}
+
+.link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  margin-top: 2rem;
   text-align: center;
-  color: #f0e6e6;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
-.bottom-content div {
-  flex: 1; /* Ensure even spacing */
-  text-align: center; /* Center text within each block */
+@media (max-width: 900px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__actions {
+    justify-content: flex-start;
+  }
 }
 
-a {
-  color: inherit; /* Inherit the color from the parent element */
-  text-decoration: none; /* Remove the underline */
-}
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
 
-a:hover {
-  text-decoration: underline; /* Optional: Add underline on hover for accessibility */
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {  
   .logo {
-    width:40%;
-    height:auto;
+    width: 140px;
   }
 
-  .tagline, .opening-times {
-    font-size: 1rem;
+  .hero__brand {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
 
-  .bottom-content {
-    margin-top: 3rem;
-    font-size: 0.8rem;
-    flex-direction: column; /* Stack items vertically on smaller screens */
-    line-height: 1;
+  .hero__actions {
+    justify-content: center;
   }
 }
