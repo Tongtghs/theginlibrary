@@ -33,6 +33,7 @@ body {
   justify-content: center;
   position: relative;
   padding: 1.5rem;
+  padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
 }
 
 .page-overlay {
@@ -195,6 +196,7 @@ body {
 @media (max-width: 600px) {
   body {
     padding: 1rem;
+    padding-top: calc(1rem + env(safe-area-inset-top, 0px));
   }
 
   .logo {
@@ -204,9 +206,16 @@ body {
   .hero__brand {
     grid-template-columns: 1fr;
     text-align: center;
+    justify-items: center;
+  }
+
+  .hero {
+    justify-items: center;
+    text-align: center;
   }
 
   .hero__actions {
     justify-content: center;
+    width: 100%;
   }
 }
