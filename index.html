@@ -4,32 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="The Gin Library Cocktail Bar in Aachen website">
-    <meta name="keywords" content="aachen best bar, cocktail bar, speakeasy, cocktailbar aachen, gin tasting, 
-      cocktailcatering, cocktail catering bar catering, barcatering, beste bar aachen">
-    <meta name=“theme-color” content=“#F0E6E6” />
+    <meta name="keywords" content="aachen best bar, cocktail bar, speakeasy, cocktailbar aachen, gin tasting, cocktailcatering, cocktail catering bar catering, barcatering, beste bar aachen">
+    <meta name="theme-color" content="#F0E6E6" />
     <title>The Gin Library</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   </head>
   <body>
+    <div class="page-overlay"></div>
     <div class="container">
-      <header class="center-content">
-        <img src="logo.png" alt="The Gin Library Logo" class="logo">
-        <p class="tagline">American Cocktail Bar in Aachen</p>
-        <p class="opening-times">Mon - Thurs 18:00 - 01:00</p>
-        <p class="opening-times">Fri & Sat 18:00 - 02:00</p>
+      <header class="hero">
+        <div class="hero__brand">
+          <img src="logo.png" alt="The Gin Library Logo" class="logo" />
+          <div>
+            <p class="eyebrow">Signature Gin & Cocktail Experience</p>
+            <p class="tagline">American Cocktail Bar in Aachen</p>
+            <p class="subtitle">Classic drinks, premium spirits, and a cozy speakeasy atmosphere.</p>
+          </div>
+        </div>
+        <div class="hero__actions">
+          <a class="button primary" href="https://maps.google.com/?q=The+Gin+Library+Aachen" target="_blank" rel="noopener">Get directions</a>
+          <a class="button" href="tel:+4916094454665">Call us</a>
+          <a class="button" href="mailto:theginlibrary@web.de">Email</a>
+        </div>
       </header>
-      <footer class="bottom-content">
-        <div class="address">
-          <p><strong>Address:</strong> Am Büchel 11, 52062 Aachen</p>
-        </div>
-        <div class="phone">
-          <p><strong>Phone:</strong> +49 (160) 94454665</p>
-        </div>
-        <div class="email">
-          <p><strong>Email:</strong> <a href="mailto:theginlibrary@web.de">theginlibrary@web.de</a></p>
-        </div>
+
+      <main>
+        <section class="info-card">
+          <div class="info-grid">
+            <div class="info-block">
+              <p class="label">Opening hours</p>
+              <p class="detail">Mon – Thurs · 18:00 – 01:00</p>
+              <p class="detail">Fri & Sat · 18:00 – 02:00</p>
+            </div>
+            <div class="info-block">
+              <p class="label">Address</p>
+              <p class="detail">Am Büchel 11</p>
+              <p class="detail">52062 Aachen</p>
+              <a class="link" href="https://maps.google.com/?q=The+Gin+Library+Aachen" target="_blank" rel="noopener">View on map</a>
+            </div>
+            <div class="info-block">
+              <p class="label">Contact</p>
+              <p class="detail">Phone: +49 (160) 94454665</p>
+              <p class="detail">Email: <a class="link" href="mailto:theginlibrary@web.de">theginlibrary@web.de</a></p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>Discover curated gin tastings, bespoke cocktails, and attentive service in the heart of Aachen.</p>
       </footer>
     </div>
   </body>
