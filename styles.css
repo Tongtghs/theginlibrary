@@ -156,9 +156,21 @@ body {
   box-shadow: var(--shadow);
 }
 
+.services-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 1.5rem;
+  padding: 0.25rem 0.25rem 0.75rem;
+}
+
+.service-feature {
+  padding: 0.25rem 0.1rem;
+}
+
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
   gap: 1.25rem;
 }
 
@@ -254,6 +266,15 @@ body {
 
   .hero__actions {
     justify-content: flex-start;
+  }
+
+  .services-highlights {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .info-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 }
 
