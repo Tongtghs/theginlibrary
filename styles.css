@@ -63,6 +63,17 @@ body {
   backdrop-filter: blur(8px);
 }
 
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.lang-toggle {
+  min-width: 3.4rem;
+  padding: 0.5rem 0.9rem;
+}
+
 .hero {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -198,6 +209,10 @@ body {
 
   .hero {
     grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    justify-content: flex-start;
   }
 
   .hero__actions {
