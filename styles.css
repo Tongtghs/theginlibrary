@@ -348,10 +348,6 @@ body {
     justify-content: flex-end;
   }
 
-  .services-highlights {
-    grid-template-columns: 1fr;
-  }
-
   .service-feature--corporate::before,
   .service-feature--corporate::after {
     content: "";
