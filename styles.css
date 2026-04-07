@@ -34,9 +34,10 @@ body {
   min-height: 100svh;
   min-height: 100lvh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
+  overflow-y: auto;
   padding: calc(var(--edge-padding) + var(--safe-top))
     calc(var(--edge-padding) + var(--safe-right))
     calc(var(--edge-padding) + var(--safe-bottom))
@@ -55,6 +56,7 @@ body {
   z-index: 2;
   max-width: 1080px;
   width: min(1080px, 100%);
+  margin: 0 auto;
   background: var(--bg-overlay);
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -235,7 +237,6 @@ body {
 
 @media (max-width: 900px) {
   body {
-    align-items: flex-start;
     justify-content: flex-start;
   }
 
