@@ -168,6 +168,11 @@ body {
   min-height: 150px;
 }
 
+.service-cta {
+  display: inline-block;
+  margin-top: 0.75rem;
+}
+
 .label {
   text-transform: uppercase;
   letter-spacing: 0.08em;

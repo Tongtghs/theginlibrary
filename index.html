@@ -54,9 +54,15 @@
             </div>
             <div class="info-block">
               <p class="label" data-i18n="corporateLabel">Corporate events</p>
-              <p class="detail" data-i18n="corporateDetailOne">We offer guided gin tastings for teams and clients.</p>
-              <p class="detail" data-i18n="corporateDetailTwo">Our cocktail catering brings a full bar experience to your event.</p>
-              <a id="corporate-inquiry-link" class="link" href="mailto:theginlibrary@web.de?subject=Corporate%20Event%20Inquiry" data-i18n="requestOffer">Request an offer</a>
+              <p class="detail" data-i18n="corporateDetailOne">Our cocktail catering brings a full bar experience to your corporate event.</p>
+              <p class="detail" data-i18n="corporateDetailTwo">Ideal for company parties, customer events, and team celebrations.</p>
+              <a id="corporate-inquiry-link" class="button primary service-cta" href="mailto:theginlibrary@web.de?subject=Corporate%20Event%20Inquiry" data-i18n="requestOffer">Request an offer</a>
+            </div>
+            <div class="info-block">
+              <p class="label" data-i18n="ginTastingLabel">Gin tastings</p>
+              <p class="detail" data-i18n="ginTastingDetailOne">Special gin tasting events can be requested at our bar.</p>
+              <p class="detail"><span data-i18n="ginTastingPriceLabel">Price:</span> <span data-i18n="ginTastingPriceValue">€69 per person</span></p>
+              <a id="gin-tasting-link" class="button service-cta" href="mailto:theginlibrary@web.de?subject=Gin%20Tasting%20Request" data-i18n="requestGinTasting">Request gin tasting</a>
             </div>
           </div>
         </section>
@@ -82,13 +88,19 @@
           phoneLabel: "Phone:",
           emailLabel: "Email:",
           corporateLabel: "Corporate events",
-          corporateDetailOne: "We offer guided gin tastings for teams and clients.",
-          corporateDetailTwo: "Our cocktail catering brings a full bar experience to your event.",
+          corporateDetailOne: "Our cocktail catering brings a full bar experience to your corporate event.",
+          corporateDetailTwo: "Ideal for company parties, customer events, and team celebrations.",
           requestOffer: "Request an offer",
+          ginTastingLabel: "Gin tastings",
+          ginTastingDetailOne: "Special gin tasting events can be requested at our bar.",
+          ginTastingPriceLabel: "Price:",
+          ginTastingPriceValue: "€69 per person",
+          requestGinTasting: "Request gin tasting",
           footer: "Discover curated gin tastings, bespoke cocktails, and cocktail catering for corporate events in and around Aachen.",
           toggleLabel: "DE",
           toggleAria: "Switch language to German",
-          corporateSubject: "Corporate Event Inquiry"
+          corporateSubject: "Corporate Event Inquiry",
+          ginTastingSubject: "Gin Tasting Request"
         },
         de: {
           eyebrow: "Signature Gin- & Cocktail-Erlebnis",
@@ -104,18 +116,25 @@
           phoneLabel: "Telefon:",
           emailLabel: "E-Mail:",
           corporateLabel: "Firmenveranstaltungen",
-          corporateDetailOne: "Wir bieten geführte Gin-Tastings für Teams und Kund:innen an.",
-          corporateDetailTwo: "Unser Cocktail-Catering bringt ein komplettes Bar-Erlebnis zu Ihrem Event.",
+          corporateDetailOne: "Unser Cocktail-Catering bringt ein komplettes Bar-Erlebnis zu Ihrer Firmenveranstaltung.",
+          corporateDetailTwo: "Ideal für Firmenfeiern, Kundenevents und Teamfeiern.",
           requestOffer: "Angebot anfragen",
+          ginTastingLabel: "Gin-Tastings",
+          ginTastingDetailOne: "Spezielle Gin-Tasting-Events können bei uns in der Bar angefragt werden.",
+          ginTastingPriceLabel: "Preis:",
+          ginTastingPriceValue: "69 € pro Person",
+          requestGinTasting: "Gin-Tasting anfragen",
           footer: "Entdecken Sie kuratierte Gin-Tastings, individuelle Cocktails und Cocktail-Catering für Firmenveranstaltungen in und um Aachen.",
           toggleLabel: "EN",
           toggleAria: "Sprache auf Englisch umstellen",
-          corporateSubject: "Anfrage Firmenveranstaltung"
+          corporateSubject: "Anfrage Firmenveranstaltung",
+          ginTastingSubject: "Anfrage Gin-Tasting"
         }
       };
 
       const toggle = document.getElementById("language-toggle");
       const corporateInquiryLink = document.getElementById("corporate-inquiry-link");
+      const ginTastingLink = document.getElementById("gin-tasting-link");
       let currentLanguage = "en";
 
       function applyLanguage(language) {
@@ -130,6 +149,7 @@
         });
 
         corporateInquiryLink.href = `mailto:theginlibrary@web.de?subject=${encodeURIComponent(dictionary.corporateSubject)}`;
+        ginTastingLink.href = `mailto:theginlibrary@web.de?subject=${encodeURIComponent(dictionary.ginTastingSubject)}`;
         toggle.textContent = dictionary.toggleLabel;
         toggle.setAttribute("aria-label", dictionary.toggleAria);
       }
