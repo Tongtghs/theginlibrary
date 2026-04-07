@@ -1,155 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Gin Tastings, Cocktail Bar & Catering in Aachen | The Gin Library</title>
-    <meta
-      name="description"
-      content="The Gin Library is a cocktail bar in Aachen offering gin tastings, cocktail catering, and corporate bar events for private and business occasions."
-    />
-    <meta
-      name="keywords"
-      content="gin tasting Aachen, cocktail bar Aachen, cocktail catering Aachen, corporate bar events Aachen, mobile bar Aachen"
-    />
-    <meta name="theme-color" content="#0f0f0f" />
-    <meta property="og:title" content="The Gin Library | Gin Tastings & Cocktail Catering in Aachen" />
-    <meta
-      property="og:description"
-      content="Book gin tastings, cocktail catering, and corporate bar events in Aachen with The Gin Library."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://theginlibrary.de/logo.png" />
-    <meta property="og:url" content="https://theginlibrary.de/" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="canonical" href="https://theginlibrary.de/" />
-    <link rel="alternate" hreflang="en" href="https://theginlibrary.de/" />
-    <link rel="alternate" hreflang="de" href="https://theginlibrary.de/de/" />
-    <link rel="alternate" hreflang="x-default" href="https://theginlibrary.de/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="The Gin Library Cocktail Bar in Aachen with gin tastings and cocktail catering for corporate events.">
+    <meta name="keywords" content="aachen best bar, cocktail bar, speakeasy, cocktailbar aachen, gin tasting, cocktailcatering, cocktail catering bar catering, barcatering, beste bar aachen">
+    <meta name="theme-color" content="#F0E6E6" />
+    <title>The Gin Library</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600&family=Inter:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BarOrPub",
-        "name": "The Gin Library",
-        "url": "https://theginlibrary.de/",
-        "image": "https://theginlibrary.de/logo.png",
-        "telephone": "+49-160-94454665",
-        "email": "theginlibrary@web.de",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Am Büchel 11",
-          "addressLocality": "Aachen",
-          "postalCode": "52062",
-          "addressCountry": "DE"
-        },
-        "areaServed": ["Aachen", "Stolberg", "Würselen", "Eschweiler"],
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-            "opens": "18:00",
-            "closes": "01:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Friday", "Saturday"],
-            "opens": "18:00",
-            "closes": "02:00"
-          }
-        ],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Cocktail and Gin Services",
-          "itemListElement": [
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gin tastings in Aachen" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cocktail catering for events" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corporate bar events" } }
-          ]
-        }
-      }
-    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="page-overlay"></div>
     <div class="container">
+      <div class="topbar">
+        <button id="language-toggle" class="button lang-toggle" type="button" aria-label="Switch language to German">DE</button>
+      </div>
       <header class="hero">
         <div class="hero__brand">
           <img src="logo.png" alt="The Gin Library Logo" class="logo" />
           <div>
-            <p class="eyebrow">Aachen Cocktail Experiences</p>
-            <h1>Gin Tastings, Cocktail Bar & Catering in Aachen</h1>
-            <p class="subtitle">
-              The Gin Library is your cocktail bar in Aachen for signature drinks, private gin tastings,
-              cocktail catering, and corporate bar events.
-            </p>
+            <p class="eyebrow" data-i18n="eyebrow">Signature Gin & Cocktail Experience</p>
+            <p class="tagline" data-i18n="tagline">American Cocktail Bar in Aachen</p>
+            <p class="subtitle" data-i18n="subtitle">Classic drinks, premium spirits, and a cozy speakeasy atmosphere.</p>
           </div>
         </div>
-        <nav class="hero__actions" aria-label="Primary contact actions">
-          <a class="button primary" href="https://maps.google.com/?q=The+Gin+Library+Aachen" target="_blank" rel="noopener">Get directions</a>
-          <a class="button" href="tel:+4916094454665">Call us</a>
-          <a class="button" href="mailto:theginlibrary@web.de">Email</a>
-        </nav>
+        <div class="hero__actions">
+          <a class="button primary" href="https://maps.google.com/?q=The+Gin+Library+Aachen" target="_blank" rel="noopener" data-i18n="getDirections">Get directions</a>
+          <a class="button" href="tel:+4916094454665" data-i18n="callUs">Call us</a>
+          <a class="button" href="mailto:theginlibrary@web.de" data-i18n="email">Email</a>
+        </div>
       </header>
 
       <main>
-        <section class="services-highlights" aria-label="Core services">
-          <article class="service-feature service-feature--gin">
-            <h2>Gin Tastings in Aachen</h2>
-            <p class="detail detail-copy">
-              Book curated gin tastings at The Gin Library for birthday groups, friend nights, and team events.
-              We guide guests through tasting notes, botanicals, and perfect serves.
-            </p>
-            <p class="detail service-feature__price"><strong>From €69 per person</strong></p>
-            <a class="button service-cta" href="gin-tasting-aachen.html">Explore gin tastings</a>
-          </article>
-
+        <section class="services-highlights">
           <article class="service-feature service-feature--corporate">
-            <h2>Cocktail Catering for Corporate Events</h2>
-            <p class="detail detail-copy">
-              Our cocktail catering in Aachen brings a complete bar setup, professional bartenders, and custom
-              menus to company parties, customer events, and networking evenings.
-            </p>
-            <a class="button primary service-cta" href="cocktail-catering-aachen.html">View catering options</a>
+            <p class="label" data-i18n="corporateLabel">Corporate events</p>
+            <p class="detail detail-copy"><span data-i18n="corporateDetailOne">Our cocktail catering brings a full bar experience to your corporate event.</span> <span data-i18n="corporateDetailTwo">Ideal for company parties, customer events, and team celebrations.</span></p>
+            <a id="corporate-inquiry-link" class="button primary service-cta" href="mailto:theginlibrary@web.de?subject=Corporate%20Event%20Inquiry" data-i18n="requestOffer">Request an offer</a>
+          </article>
+          <article class="service-feature service-feature--gin">
+            <p class="label" data-i18n="ginTastingLabel">Gin tastings</p>
+            <p class="detail detail-copy" data-i18n="ginTastingDetailOne">Special gin tasting events can be requested at our bar.</p>
+            <p class="detail service-feature__price"><span data-i18n="ginTastingPriceLabel">Price:</span> <span data-i18n="ginTastingPriceValue">€69 per person</span></p>
+            <a id="gin-tasting-link" class="button service-cta" href="mailto:theginlibrary@web.de?subject=Gin%20Tasting%20Request" data-i18n="requestGinTasting">Request gin tasting</a>
           </article>
         </section>
 
-        <section class="info-card content-section">
-          <h2>Corporate Bar Events & Mobile Bar Service</h2>
-          <p>
-            Planning a corporate bar event in Aachen? The Gin Library offers scalable mobile bar concepts for
-            conferences, product launches, office celebrations, and end-of-year parties.
-          </p>
-          <p>
-            We can provide classic cocktails, non-alcoholic signatures, and a service flow designed for your
-            guest count and timeline.
-          </p>
-          <a class="link" href="corporate-bar-events-aachen.html">See corporate event packages</a>
-        </section>
-
-        <section class="info-card info-layout">
+        <section class="info-card">
           <div class="info-grid">
             <div class="info-block">
-              <h2>Opening hours</h2>
+              <p class="label" data-i18n="openingHoursLabel">Opening hours</p>
               <p class="detail">Mon – Thurs · 18:00 – 01:00</p>
               <p class="detail">Fri & Sat · 18:00 – 02:00</p>
             </div>
             <div class="info-block">
-              <h2>Address</h2>
+              <p class="label" data-i18n="addressLabel">Address</p>
               <p class="detail">Am Büchel 11</p>
               <p class="detail">52062 Aachen</p>
-              <a class="link" href="https://maps.google.com/?q=The+Gin+Library+Aachen" target="_blank" rel="noopener">View on map</a>
+              <a class="link" href="https://maps.google.com/?q=The+Gin+Library+Aachen" target="_blank" rel="noopener" data-i18n="viewOnMap">View on map</a>
             </div>
             <div class="info-block contact-block">
-              <h2>Contact</h2>
+              <p class="label" data-i18n="contactLabel">Contact</p>
               <div class="contact-list">
-                <p class="detail contact-item"><span class="contact-key">Phone:</span> <a class="link" href="tel:+4916094454665">+49 (160) 94454665</a></p>
-                <p class="detail contact-item"><span class="contact-key">Email:</span> <a class="link" href="mailto:theginlibrary@web.de">theginlibrary@web.de</a></p>
+                <p class="detail contact-item"><span class="contact-key" data-i18n="phoneLabel">Phone:</span> <a class="link" href="tel:+4916094454665">+49 (160) 94454665</a></p>
+                <p class="detail contact-item"><span class="contact-key" data-i18n="emailLabel">Email:</span> <a class="link" href="mailto:theginlibrary@web.de">theginlibrary@web.de</a></p>
               </div>
             </div>
           </div>
@@ -157,11 +73,97 @@
       </main>
 
       <footer class="footer">
-        <p>
-          Looking for a cocktail bar in Aachen, gin tasting experiences, or cocktail catering for corporate events?
-          Get in touch for availability and custom offers.
-        </p>
+        <p data-i18n="footer">Discover curated gin tastings, bespoke cocktails, and cocktail catering for corporate events in and around Aachen.</p>
       </footer>
     </div>
+    <script>
+      const translations = {
+        en: {
+          eyebrow: "Signature Gin & Cocktail Experience",
+          tagline: "American Cocktail Bar in Aachen",
+          subtitle: "Classic drinks, premium spirits, and a cozy speakeasy atmosphere.",
+          getDirections: "Get directions",
+          callUs: "Call us",
+          email: "Email",
+          openingHoursLabel: "Opening hours",
+          addressLabel: "Address",
+          viewOnMap: "View on map",
+          contactLabel: "Contact",
+          phoneLabel: "Phone:",
+          emailLabel: "Email:",
+          corporateLabel: "Corporate events",
+          corporateDetailOne: "Our cocktail catering brings a full bar experience to your corporate event.",
+          corporateDetailTwo: "Ideal for company parties, customer events, and team celebrations.",
+          requestOffer: "Request an offer",
+          ginTastingLabel: "Gin tastings",
+          ginTastingDetailOne: "Special gin tasting events can be requested at our bar.",
+          ginTastingPriceLabel: "Price:",
+          ginTastingPriceValue: "€69 per person",
+          requestGinTasting: "Request gin tasting",
+          footer: "Discover curated gin tastings, bespoke cocktails, and cocktail catering for corporate events in and around Aachen.",
+          toggleLabel: "DE",
+          toggleAria: "Switch language to German",
+          corporateSubject: "Corporate Event Inquiry",
+          ginTastingSubject: "Gin Tasting Request"
+        },
+        de: {
+          eyebrow: "Signature Gin- & Cocktail-Erlebnis",
+          tagline: "Amerikanische Cocktailbar in Aachen",
+          subtitle: "Klassische Drinks, Premium-Spirituosen und eine gemütliche Speakeasy-Atmosphäre.",
+          getDirections: "Route anzeigen",
+          callUs: "Anrufen",
+          email: "E-Mail",
+          openingHoursLabel: "Öffnungszeiten",
+          addressLabel: "Adresse",
+          viewOnMap: "Auf Karte ansehen",
+          contactLabel: "Kontakt",
+          phoneLabel: "Telefon:",
+          emailLabel: "E-Mail:",
+          corporateLabel: "Firmenveranstaltungen",
+          corporateDetailOne: "Unser Cocktail-Catering bringt ein komplettes Bar-Erlebnis zu Ihrer Firmenveranstaltung.",
+          corporateDetailTwo: "Ideal für Firmenfeiern, Kundenevents und Teamfeiern.",
+          requestOffer: "Angebot anfragen",
+          ginTastingLabel: "Gin-Tastings",
+          ginTastingDetailOne: "Spezielle Gin-Tasting-Events können bei uns in der Bar angefragt werden.",
+          ginTastingPriceLabel: "Preis:",
+          ginTastingPriceValue: "69 € pro Person",
+          requestGinTasting: "Gin-Tasting anfragen",
+          footer: "Entdecken Sie kuratierte Gin-Tastings, individuelle Cocktails und Cocktail-Catering für Firmenveranstaltungen in und um Aachen.",
+          toggleLabel: "EN",
+          toggleAria: "Sprache auf Englisch umstellen",
+          corporateSubject: "Anfrage Firmenveranstaltung",
+          ginTastingSubject: "Anfrage Gin-Tasting"
+        }
+      };
+
+      const toggle = document.getElementById("language-toggle");
+      const corporateInquiryLink = document.getElementById("corporate-inquiry-link");
+      const ginTastingLink = document.getElementById("gin-tasting-link");
+      let currentLanguage = "en";
+
+      function applyLanguage(language) {
+        const dictionary = translations[language];
+        document.documentElement.lang = language;
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.getAttribute("data-i18n");
+          if (dictionary[key]) {
+            element.textContent = dictionary[key];
+          }
+        });
+
+        corporateInquiryLink.href = `mailto:theginlibrary@web.de?subject=${encodeURIComponent(dictionary.corporateSubject)}`;
+        ginTastingLink.href = `mailto:theginlibrary@web.de?subject=${encodeURIComponent(dictionary.ginTastingSubject)}`;
+        toggle.textContent = dictionary.toggleLabel;
+        toggle.setAttribute("aria-label", dictionary.toggleAria);
+      }
+
+      toggle.addEventListener("click", () => {
+        currentLanguage = currentLanguage === "en" ? "de" : "en";
+        applyLanguage(currentLanguage);
+      });
+
+      applyLanguage("en");
+    </script>
   </body>
 </html>
