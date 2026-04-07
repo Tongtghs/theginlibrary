@@ -56,7 +56,7 @@ body {
   z-index: 2;
   max-width: 1080px;
   width: min(1080px, 100%);
-  margin: 0 auto;
+  margin: 0 auto calc(var(--edge-padding) + var(--safe-bottom));
   background: var(--bg-overlay);
   border: 1px solid var(--border);
   border-radius: 20px;
