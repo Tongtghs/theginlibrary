@@ -34,9 +34,10 @@ body {
   min-height: 100svh;
   min-height: 100lvh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
+  overflow-y: auto;
   padding: calc(var(--edge-padding) + var(--safe-top))
     calc(var(--edge-padding) + var(--safe-right))
     calc(var(--edge-padding) + var(--safe-bottom))
@@ -55,6 +56,7 @@ body {
   z-index: 2;
   max-width: 1080px;
   width: min(1080px, 100%);
+  margin: 0 auto calc(var(--edge-padding) + var(--safe-bottom));
   background: var(--bg-overlay);
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -154,9 +156,40 @@ body {
   box-shadow: var(--shadow);
 }
 
+.services-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 1.5rem;
+  padding: 0.25rem 0.25rem 0.75rem;
+  align-items: stretch;
+}
+
+.service-feature {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem 0.1rem;
+}
+
+.service-feature .label {
+  font-size: 1.2rem;
+  letter-spacing: 0.14em;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+}
+
+.service-feature .service-cta {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.service-feature .detail-copy {
+  margin-bottom: 1.35rem;
+}
+
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
   gap: 1.25rem;
 }
 
@@ -182,8 +215,39 @@ body {
 }
 
 .detail {
-  margin: 0.25rem 0;
+  margin: 0.35rem 0;
   font-size: 1rem;
+  line-height: 1.45;
+}
+
+.detail-copy {
+  line-height: 1.7;
+  margin-bottom: 0.55rem;
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-list {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 0.15rem;
+}
+
+.contact-item {
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contact-key {
+  color: var(--muted);
+  margin-right: 0.25rem;
+  font-weight: 600;
 }
 
 .link {
@@ -204,7 +268,6 @@ body {
 
 @media (max-width: 900px) {
   body {
-    align-items: flex-start;
     justify-content: flex-start;
   }
 
@@ -222,6 +285,15 @@ body {
 
   .hero__actions {
     justify-content: flex-start;
+  }
+
+  .services-highlights {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .info-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 }
 
