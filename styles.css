@@ -366,3 +366,39 @@ body {
     margin-top: 2rem;
   }
 }
+
+h1 {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin: 0;
+  line-height: 1.2;
+}
+
+h2 {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+  margin: 0 0 0.75rem;
+}
+
+.content-section {
+  margin-bottom: 1.5rem;
+}
+
+.info-layout {
+  margin-top: 1.5rem;
+}
+
+.inner-page {
+  max-width: 760px;
+}
+
+.inner-page p,
+.inner-page li {
+  line-height: 1.7;
+}
+
+.inner-page ul,
+.inner-page ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.3rem;
+}
