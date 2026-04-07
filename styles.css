@@ -182,8 +182,39 @@ body {
 }
 
 .detail {
-  margin: 0.25rem 0;
+  margin: 0.35rem 0;
   font-size: 1rem;
+  line-height: 1.45;
+}
+
+.detail-copy {
+  line-height: 1.7;
+  margin-bottom: 0.55rem;
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-list {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 0.15rem;
+}
+
+.contact-item {
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contact-key {
+  color: var(--muted);
+  margin-right: 0.25rem;
+  font-weight: 600;
 }
 
 .link {
