@@ -160,7 +160,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.75rem;
-  margin-bottom: 1.5rem;
+  margin: 2.4rem 0 2.25rem;
   padding: 0.25rem 0.25rem 0.75rem;
   align-items: stretch;
 }
@@ -320,5 +320,23 @@ body {
   .hero__actions {
     justify-content: center;
     width: 100%;
+  }
+
+  .service-feature--corporate::before,
+  .service-feature--corporate::after {
+    content: "";
+    display: block;
+    width: min(210px, 72%);
+    height: 1px;
+    margin-inline: auto;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(215, 197, 165, 0.9), rgba(255, 255, 255, 0));
+  }
+
+  .service-feature--corporate::before {
+    margin-bottom: 1.3rem;
+  }
+
+  .service-feature--corporate::after {
+    margin-top: 1.45rem;
   }
 }
