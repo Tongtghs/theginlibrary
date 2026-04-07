@@ -183,6 +183,10 @@ body {
   align-self: flex-start;
 }
 
+.service-feature .detail-copy {
+  margin-bottom: 1.35rem;
+}
+
 .info-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(220px, 1fr));
