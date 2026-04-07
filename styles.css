@@ -158,14 +158,29 @@ body {
 
 .services-highlights {
   display: grid;
-  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.75rem;
   margin-bottom: 1.5rem;
   padding: 0.25rem 0.25rem 0.75rem;
+  align-items: stretch;
 }
 
 .service-feature {
+  display: flex;
+  flex-direction: column;
   padding: 0.25rem 0.1rem;
+}
+
+.service-feature .label {
+  font-size: 1.2rem;
+  letter-spacing: 0.14em;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+}
+
+.service-feature .service-cta {
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 .info-grid {
