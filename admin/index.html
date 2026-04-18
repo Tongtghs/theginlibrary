@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin · The Gin Library</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="page-overlay"></div>
+    <div class="container container--narrow">
+      <header class="page-header">
+        <p class="eyebrow">The Gin Library</p>
+        <h1 class="page-title">Admin sign in</h1>
+      </header>
+      <main>
+        <div class="info-card booking-card">
+          <form id="login-form" class="booking-form" novalidate>
+            <label class="field">
+              <span class="field__label">Email</span>
+              <input id="email" name="email" type="email" autocomplete="username" required>
+            </label>
+            <label class="field">
+              <span class="field__label">Password</span>
+              <input id="password" name="password" type="password" autocomplete="current-password" required>
+            </label>
+            <p id="login-error" class="booking-error" role="alert" hidden></p>
+            <div class="booking-actions">
+              <button type="submit" class="button primary">Sign in</button>
+            </div>
+          </form>
+        </div>
+      </main>
+      <footer class="footer">
+        <p><a class="link" href="/">← Back to site</a></p>
+      </footer>
+    </div>
+    <script type="module">
+      import { getSupabase, saveSession } from "/assets/js/admin.js";
+      const supabase = await getSupabase();
+
+      // If already signed in, go to dashboard.
+      const { data: existing } = await supabase.auth.getSession();
+      if (existing.session) {
+        saveSession(existing.session);
+        location.href = "/admin/dashboard.html";
+      }
+
+      const form = document.getElementById("login-form");
+      const err = document.getElementById("login-error");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        err.hidden = true;
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) {
+          err.textContent = error.message || "Sign in failed";
+          err.hidden = false;
+          return;
+        }
+        saveSession(data.session);
+        location.href = "/admin/dashboard.html";
+      });
+    </script>
+  </body>
+</html>

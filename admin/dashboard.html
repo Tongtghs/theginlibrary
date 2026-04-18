@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin dashboard · The Gin Library</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="page-overlay"></div>
+    <div class="container container--wide">
+      <div class="topbar">
+        <p class="eyebrow" style="margin:0">Admin · The Gin Library</p>
+        <div style="display:flex;gap:.5rem;align-items:center">
+          <span id="admin-email" class="admin-email"></span>
+          <button id="logout" class="button" type="button">Sign out</button>
+        </div>
+      </div>
+
+      <section class="admin-section">
+        <div class="admin-section__head">
+          <h2 class="admin-section__title">Events</h2>
+          <button id="new-event" class="button primary" type="button">+ New event</button>
+        </div>
+        <div id="events-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>When</th>
+                <th>Title (EN)</th>
+                <th>Price</th>
+                <th>Capacity</th>
+                <th>Booked</th>
+                <th>Published</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="events-tbody"></tbody>
+          </table>
+          <p id="events-empty" class="events-empty" hidden>No events yet. Create one to get started.</p>
+        </div>
+      </section>
+
+      <section id="bookings-section" class="admin-section" hidden>
+        <div class="admin-section__head">
+          <h2 class="admin-section__title">Bookings — <span id="bookings-title"></span></h2>
+          <div style="display:flex;gap:.5rem">
+            <a id="export-csv" class="button" href="#">Export CSV</a>
+            <button id="close-bookings" class="button" type="button">Close</button>
+          </div>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>When booked</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Seats</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Locale</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-tbody"></tbody>
+        </table>
+        <p id="bookings-empty" class="events-empty" hidden>No bookings yet for this event.</p>
+      </section>
+
+      <!-- Event editor modal -->
+      <div id="editor" class="modal" hidden>
+        <div class="modal__panel info-card">
+          <div class="admin-section__head">
+            <h2 class="admin-section__title" id="editor-title">Edit event</h2>
+            <button id="editor-close" class="button" type="button">Close</button>
+          </div>
+          <form id="event-form" class="booking-form" novalidate>
+            <input type="hidden" id="event-id">
+            <div class="grid-2">
+              <label class="field">
+                <span class="field__label">Slug (URL part)</span>
+                <input id="f-slug" type="text" required pattern="[a-z0-9][a-z0-9-]{1,119}">
+              </label>
+              <label class="field">
+                <span class="field__label">Starts at (local)</span>
+                <input id="f-starts-at" type="datetime-local" required>
+              </label>
+              <label class="field">
+                <span class="field__label">Title (EN)</span>
+                <input id="f-title-en" type="text" required maxlength="200">
+              </label>
+              <label class="field">
+                <span class="field__label">Title (DE)</span>
+                <input id="f-title-de" type="text" required maxlength="200">
+              </label>
+            </div>
+            <label class="field">
+              <span class="field__label">Description (EN)</span>
+              <textarea id="f-desc-en" rows="4" required></textarea>
+            </label>
+            <label class="field">
+              <span class="field__label">Description (DE)</span>
+              <textarea id="f-desc-de" rows="4" required></textarea>
+            </label>
+            <div class="grid-3">
+              <label class="field">
+                <span class="field__label">Capacity</span>
+                <input id="f-capacity" type="number" min="1" step="1" required>
+              </label>
+              <label class="field">
+                <span class="field__label">Price (cents)</span>
+                <input id="f-price" type="number" min="0" step="1" required>
+              </label>
+              <label class="field">
+                <span class="field__label">Duration (min)</span>
+                <input id="f-duration" type="number" min="15" step="5" value="120" required>
+              </label>
+              <label class="field">
+                <span class="field__label">Currency</span>
+                <input id="f-currency" type="text" value="eur" maxlength="3">
+              </label>
+              <label class="field">
+                <span class="field__label">Image URL (optional)</span>
+                <input id="f-image" type="url">
+              </label>
+              <label class="field checkbox-field">
+                <input id="f-published" type="checkbox">
+                <span>Published (visible to public)</span>
+              </label>
+            </div>
+            <p id="editor-error" class="booking-error" role="alert" hidden></p>
+            <div class="booking-actions">
+              <button id="editor-delete" type="button" class="button">Delete</button>
+              <button type="submit" class="button primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p><a class="link" href="/">← Back to site</a></p>
+      </footer>
+    </div>
+    <script type="module">
+      import {
+        getSupabase,
+        clearSession,
+        authFetch,
+        requireAuth,
+      } from "/assets/js/admin.js";
+
+      await requireAuth();
+
+      const supabase = await getSupabase();
+      const { data: userData } = await supabase.auth.getUser();
+      document.getElementById("admin-email").textContent = userData?.user?.email || "";
+
+      document.getElementById("logout").addEventListener("click", async () => {
+        await supabase.auth.signOut();
+        clearSession();
+        location.href = "/admin/";
+      });
+
+      function fmtDate(iso) {
+        return new Intl.DateTimeFormat("en-GB", {
+          day: "2-digit", month: "short", year: "numeric",
+          hour: "2-digit", minute: "2-digit",
+          timeZone: "Europe/Berlin",
+        }).format(new Date(iso));
+      }
+      function fmtMoney(cents, currency) {
+        return new Intl.NumberFormat("en-GB", { style: "currency", currency: (currency || "eur").toUpperCase() }).format(cents / 100);
+      }
+
+      function escapeHtml(s) {
+        return String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+      }
+
+      const eventsTbody = document.getElementById("events-tbody");
+      const eventsEmpty = document.getElementById("events-empty");
+
+      async function loadEvents() {
+        const r = await authFetch("/.netlify/functions/admin-events");
+        const data = await r.json();
+        const events = data.events || [];
+
+        const bookingsResp = await authFetch("/.netlify/functions/admin-bookings");
+        const bookingsData = await bookingsResp.json();
+        const bookedByEvent = new Map();
+        for (const b of bookingsData.bookings || []) {
+          if (b.status === "paid" || b.status === "pending") {
+            bookedByEvent.set(b.event_id, (bookedByEvent.get(b.event_id) || 0) + b.seats);
+          }
+        }
+
+        eventsTbody.innerHTML = "";
+        if (events.length === 0) {
+          eventsEmpty.hidden = false;
+          return;
+        }
+        eventsEmpty.hidden = true;
+        for (const e of events) {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${escapeHtml(fmtDate(e.starts_at))}</td>
+            <td>${escapeHtml(e.title_en)}</td>
+            <td>${escapeHtml(fmtMoney(e.price_cents, e.currency))}</td>
+            <td>${escapeHtml(String(e.capacity))}</td>
+            <td>${escapeHtml(String(bookedByEvent.get(e.id) || 0))}</td>
+            <td>${e.is_published ? "✓" : "—"}</td>
+            <td class="actions">
+              <button class="button" data-action="edit" data-id="${escapeHtml(e.id)}">Edit</button>
+              <button class="button" data-action="bookings" data-id="${escapeHtml(e.id)}" data-title="${escapeHtml(e.title_en)}">Bookings</button>
+              <button class="button" data-action="duplicate" data-id="${escapeHtml(e.id)}">Duplicate</button>
+            </td>`;
+          eventsTbody.appendChild(tr);
+        }
+      }
+
+      eventsTbody.addEventListener("click", async (e) => {
+        const btn = e.target.closest("button[data-action]");
+        if (!btn) return;
+        const action = btn.dataset.action;
+        const id = btn.dataset.id;
+        if (action === "edit") openEditor(id);
+        if (action === "bookings") openBookings(id, btn.dataset.title);
+        if (action === "duplicate") duplicateEvent(id);
+      });
+
+      // ---- editor ----
+      const editor = document.getElementById("editor");
+      const editorTitle = document.getElementById("editor-title");
+      const editorError = document.getElementById("editor-error");
+      const editorForm = document.getElementById("event-form");
+      const editorDelete = document.getElementById("editor-delete");
+      document.getElementById("editor-close").addEventListener("click", () => (editor.hidden = true));
+      document.getElementById("new-event").addEventListener("click", () => openEditor());
+
+      function toLocalInput(iso) {
+        if (!iso) return "";
+        const d = new Date(iso);
+        const pad = (n) => String(n).padStart(2, "0");
+        return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+      }
+      function fromLocalInput(v) {
+        return v ? new Date(v).toISOString() : null;
+      }
+
+      async function openEditor(id) {
+        editorError.hidden = true;
+        document.getElementById("event-id").value = id || "";
+        editorTitle.textContent = id ? "Edit event" : "New event";
+        editorDelete.hidden = !id;
+
+        let ev = {
+          slug: "",
+          title_en: "", title_de: "",
+          description_en: "", description_de: "",
+          starts_at: "", duration_minutes: 120,
+          capacity: 20, price_cents: 6900, currency: "eur",
+          image_url: "", is_published: false,
+        };
+        if (id) {
+          const r = await authFetch(`/.netlify/functions/admin-events?id=${encodeURIComponent(id)}`);
+          const data = await r.json();
+          ev = data.event;
+        }
+        document.getElementById("f-slug").value = ev.slug || "";
+        document.getElementById("f-starts-at").value = toLocalInput(ev.starts_at);
+        document.getElementById("f-title-en").value = ev.title_en || "";
+        document.getElementById("f-title-de").value = ev.title_de || "";
+        document.getElementById("f-desc-en").value = ev.description_en || "";
+        document.getElementById("f-desc-de").value = ev.description_de || "";
+        document.getElementById("f-capacity").value = ev.capacity ?? 20;
+        document.getElementById("f-price").value = ev.price_cents ?? 6900;
+        document.getElementById("f-duration").value = ev.duration_minutes ?? 120;
+        document.getElementById("f-currency").value = ev.currency || "eur";
+        document.getElementById("f-image").value = ev.image_url || "";
+        document.getElementById("f-published").checked = !!ev.is_published;
+
+        editor.hidden = false;
+      }
+
+      editorForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        editorError.hidden = true;
+        const id = document.getElementById("event-id").value;
+        const payload = {
+          slug: document.getElementById("f-slug").value.trim(),
+          title_en: document.getElementById("f-title-en").value.trim(),
+          title_de: document.getElementById("f-title-de").value.trim(),
+          description_en: document.getElementById("f-desc-en").value.trim(),
+          description_de: document.getElementById("f-desc-de").value.trim(),
+          starts_at: fromLocalInput(document.getElementById("f-starts-at").value),
+          duration_minutes: Number(document.getElementById("f-duration").value),
+          capacity: Number(document.getElementById("f-capacity").value),
+          price_cents: Number(document.getElementById("f-price").value),
+          currency: document.getElementById("f-currency").value.trim().toLowerCase() || "eur",
+          image_url: document.getElementById("f-image").value.trim() || null,
+          is_published: document.getElementById("f-published").checked,
+        };
+        const url = id
+          ? `/.netlify/functions/admin-events?id=${encodeURIComponent(id)}`
+          : `/.netlify/functions/admin-events`;
+        const method = id ? "PUT" : "POST";
+        const r = await authFetch(url, { method, body: JSON.stringify(payload) });
+        if (!r.ok) {
+          const data = await r.json().catch(() => ({}));
+          editorError.textContent = data.error || `Save failed (${r.status})`;
+          editorError.hidden = false;
+          return;
+        }
+        editor.hidden = true;
+        await loadEvents();
+      });
+
+      editorDelete.addEventListener("click", async () => {
+        const id = document.getElementById("event-id").value;
+        if (!id) return;
+        if (!confirm("Delete this event? This cannot be undone.")) return;
+        const r = await authFetch(`/.netlify/functions/admin-events?id=${encodeURIComponent(id)}`, { method: "DELETE" });
+        if (!r.ok && r.status !== 204) {
+          const data = await r.json().catch(() => ({}));
+          editorError.textContent = data.error || `Delete failed (${r.status})`;
+          editorError.hidden = false;
+          return;
+        }
+        editor.hidden = true;
+        await loadEvents();
+      });
+
+      async function duplicateEvent(id) {
+        const r = await authFetch(`/.netlify/functions/admin-events?id=${encodeURIComponent(id)}`);
+        const data = await r.json();
+        const src = data.event;
+        // Shift date by 7 days, append "-copy" to slug, unpublish.
+        const copy = { ...src };
+        delete copy.id;
+        delete copy.created_at;
+        delete copy.updated_at;
+        copy.slug = `${src.slug}-copy-${Date.now().toString(36)}`;
+        copy.starts_at = new Date(new Date(src.starts_at).getTime() + 7 * 24 * 3600 * 1000).toISOString();
+        copy.is_published = false;
+        const cr = await authFetch("/.netlify/functions/admin-events", { method: "POST", body: JSON.stringify(copy) });
+        if (!cr.ok) {
+          const err = await cr.json().catch(() => ({}));
+          alert(err.error || "Duplicate failed");
+          return;
+        }
+        await loadEvents();
+      }
+
+      // ---- bookings panel ----
+      const bookingsSection = document.getElementById("bookings-section");
+      const bookingsTbody = document.getElementById("bookings-tbody");
+      const bookingsEmpty = document.getElementById("bookings-empty");
+      const bookingsTitle = document.getElementById("bookings-title");
+      const exportLink = document.getElementById("export-csv");
+      document.getElementById("close-bookings").addEventListener("click", () => (bookingsSection.hidden = true));
+
+      async function openBookings(eventId, title) {
+        bookingsTitle.textContent = title || "";
+        bookingsSection.hidden = false;
+        bookingsTbody.innerHTML = "";
+        bookingsEmpty.hidden = true;
+
+        const r = await authFetch(`/.netlify/functions/admin-bookings?event_id=${encodeURIComponent(eventId)}`);
+        const data = await r.json();
+        const bookings = data.bookings || [];
+        if (bookings.length === 0) {
+          bookingsEmpty.hidden = false;
+        } else {
+          for (const b of bookings) {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${escapeHtml(fmtDate(b.created_at))}</td>
+              <td>${escapeHtml(b.customer_name)}</td>
+              <td><a class="link" href="mailto:${escapeHtml(b.customer_email)}">${escapeHtml(b.customer_email)}</a></td>
+              <td>${escapeHtml(b.customer_phone || "—")}</td>
+              <td>${escapeHtml(String(b.seats))}</td>
+              <td>${escapeHtml(fmtMoney(b.total_cents, b.currency))}</td>
+              <td>${escapeHtml(b.status)}</td>
+              <td>${escapeHtml(b.locale)}</td>`;
+            bookingsTbody.appendChild(tr);
+          }
+        }
+
+        // CSV export needs the auth header, so we fetch + blob rather than a plain link.
+        exportLink.onclick = async (e) => {
+          e.preventDefault();
+          const resp = await authFetch(
+            `/.netlify/functions/admin-bookings?event_id=${encodeURIComponent(eventId)}&format=csv`
+          );
+          const blob = await resp.blob();
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `bookings-${eventId}.csv`;
+          a.click();
+          URL.revokeObjectURL(url);
+        };
+      }
+
+      await loadEvents();
+    </script>
+  </body>
+</html>

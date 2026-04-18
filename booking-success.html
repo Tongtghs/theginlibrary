@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#F0E6E6" />
+    <meta name="robots" content="noindex">
+    <title>Booking confirmed · The Gin Library</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="page-overlay"></div>
+    <div class="container">
+      <div class="topbar">
+        <nav class="sub-nav">
+          <a class="link" href="/" data-i18n="navHome">Home</a>
+        </nav>
+        <button id="language-toggle" class="button lang-toggle" type="button" aria-label="Switch language to German">DE</button>
+      </div>
+      <header class="page-header">
+        <p class="eyebrow">The Gin Library</p>
+        <h1 class="page-title" data-i18n="successHeading">Thank you — your booking is confirmed</h1>
+        <p class="page-intro" data-i18n="successBody">Your payment was successful. A confirmation email is on its way.</p>
+      </header>
+      <main>
+        <div class="booking-actions">
+          <a class="button primary" href="/" data-i18n="backHome">Back to home</a>
+        </div>
+      </main>
+      <footer class="footer">
+        <p data-i18n="footer">Discover curated gin tastings, bespoke cocktails, and cocktail catering for corporate events in and around Aachen.</p>
+      </footer>
+    </div>
+    <script type="module">
+      import { initI18n } from "/assets/js/i18n.js";
+      initI18n();
+    </script>
+  </body>
+</html>

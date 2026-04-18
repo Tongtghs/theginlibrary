@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Upcoming gin tasting events at The Gin Library in Aachen. Book your seat online.">
+    <meta name="theme-color" content="#F0E6E6" />
+    <title>Events · The Gin Library</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="page-overlay"></div>
+    <div class="container">
+      <div class="topbar">
+        <nav class="sub-nav">
+          <a class="link" href="/" data-i18n="navHome">Home</a>
+        </nav>
+        <button id="language-toggle" class="button lang-toggle" type="button" aria-label="Switch language to German">DE</button>
+      </div>
+
+      <header class="page-header">
+        <p class="eyebrow">The Gin Library</p>
+        <h1 class="page-title" data-i18n="eventsHeading">Upcoming gin tastings</h1>
+        <p class="page-intro" data-i18n="eventsIntro">Book your seat at our next curated gin tasting.</p>
+      </header>
+
+      <main>
+        <section id="events-list" class="events-list"></section>
+        <p id="events-empty" class="events-empty" hidden data-i18n="eventsEmpty">No upcoming events right now. Check back soon — or email us to arrange a private tasting.</p>
+      </main>
+
+      <footer class="footer">
+        <p data-i18n="footer">Discover curated gin tastings, bespoke cocktails, and cocktail catering for corporate events in and around Aachen.</p>
+      </footer>
+    </div>
+    <script type="module" src="/assets/js/events.js"></script>
+  </body>
+</html>

@@ -15,6 +15,9 @@
     <div class="page-overlay"></div>
     <div class="container">
       <div class="topbar">
+        <nav class="sub-nav">
+          <a class="link" href="/events.html" data-i18n="navEvents">Events</a>
+        </nav>
         <button id="language-toggle" class="button lang-toggle" type="button" aria-label="Switch language to German">DE</button>
       </div>
       <header class="hero">
@@ -27,7 +30,8 @@
           </div>
         </div>
         <div class="hero__actions">
-          <a class="button primary" href="https://maps.google.com/?q=The+Gin+Library+Aachen" target="_blank" rel="noopener" data-i18n="getDirections">Get directions</a>
+          <a class="button primary" href="/events.html" data-i18n="bookTasting">Book a tasting</a>
+          <a class="button" href="https://maps.google.com/?q=The+Gin+Library+Aachen" target="_blank" rel="noopener" data-i18n="getDirections">Get directions</a>
           <a class="button" href="tel:+4916094454665" data-i18n="callUs">Call us</a>
           <a class="button" href="mailto:theginlibrary@web.de" data-i18n="email">Email</a>
         </div>
@@ -44,7 +48,7 @@
             <p class="label" data-i18n="ginTastingLabel">Gin tastings</p>
             <p class="detail detail-copy" data-i18n="ginTastingDetailOne">Special gin tasting events can be requested at our bar.</p>
             <p class="detail service-feature__price"><span data-i18n="ginTastingPriceLabel">Price:</span> <span data-i18n="ginTastingPriceValue">€69 per person</span></p>
-            <a id="gin-tasting-link" class="button service-cta" href="mailto:theginlibrary@web.de?subject=Gin%20Tasting%20Request" data-i18n="requestGinTasting">Request gin tasting</a>
+            <a class="button primary service-cta" href="/events.html" data-i18n="bookTasting">Book a tasting</a>
           </article>
         </section>
 
@@ -76,94 +80,18 @@
         <p data-i18n="footer">Discover curated gin tastings, bespoke cocktails, and cocktail catering for corporate events in and around Aachen.</p>
       </footer>
     </div>
-    <script>
-      const translations = {
-        en: {
-          eyebrow: "Signature Gin & Cocktail Experience",
-          tagline: "American Cocktail Bar in Aachen",
-          subtitle: "Classic drinks, premium spirits, and a cozy speakeasy atmosphere.",
-          getDirections: "Get directions",
-          callUs: "Call us",
-          email: "Email",
-          openingHoursLabel: "Opening hours",
-          addressLabel: "Address",
-          viewOnMap: "View on map",
-          contactLabel: "Contact",
-          phoneLabel: "Phone:",
-          emailLabel: "Email:",
-          corporateLabel: "Corporate events",
-          corporateDetailOne: "Our cocktail catering brings a full bar experience to your corporate event.",
-          corporateDetailTwo: "Ideal for company parties, customer events, and team celebrations.",
-          requestOffer: "Request an offer",
-          ginTastingLabel: "Gin tastings",
-          ginTastingDetailOne: "Special gin tasting events can be requested at our bar.",
-          ginTastingPriceLabel: "Price:",
-          ginTastingPriceValue: "€69 per person",
-          requestGinTasting: "Request gin tasting",
-          footer: "Discover curated gin tastings, bespoke cocktails, and cocktail catering for corporate events in and around Aachen.",
-          toggleLabel: "DE",
-          toggleAria: "Switch language to German",
-          corporateSubject: "Corporate Event Inquiry",
-          ginTastingSubject: "Gin Tasting Request"
-        },
-        de: {
-          eyebrow: "Signature Gin- & Cocktail-Erlebnis",
-          tagline: "Amerikanische Cocktailbar in Aachen",
-          subtitle: "Klassische Drinks, Premium-Spirituosen und eine gemütliche Speakeasy-Atmosphäre.",
-          getDirections: "Route anzeigen",
-          callUs: "Anrufen",
-          email: "E-Mail",
-          openingHoursLabel: "Öffnungszeiten",
-          addressLabel: "Adresse",
-          viewOnMap: "Auf Karte ansehen",
-          contactLabel: "Kontakt",
-          phoneLabel: "Telefon:",
-          emailLabel: "E-Mail:",
-          corporateLabel: "Firmenveranstaltungen",
-          corporateDetailOne: "Unser Cocktail-Catering bringt ein komplettes Bar-Erlebnis zu Ihrer Firmenveranstaltung.",
-          corporateDetailTwo: "Ideal für Firmenfeiern, Kundenevents und Teamfeiern.",
-          requestOffer: "Angebot anfragen",
-          ginTastingLabel: "Gin-Tastings",
-          ginTastingDetailOne: "Spezielle Gin-Tasting-Events können bei uns in der Bar angefragt werden.",
-          ginTastingPriceLabel: "Preis:",
-          ginTastingPriceValue: "69 € pro Person",
-          requestGinTasting: "Gin-Tasting anfragen",
-          footer: "Entdecken Sie kuratierte Gin-Tastings, individuelle Cocktails und Cocktail-Catering für Firmenveranstaltungen in und um Aachen.",
-          toggleLabel: "EN",
-          toggleAria: "Sprache auf Englisch umstellen",
-          corporateSubject: "Anfrage Firmenveranstaltung",
-          ginTastingSubject: "Anfrage Gin-Tasting"
+    <script type="module">
+      import { initI18n, t, onLocaleChange } from "/assets/js/i18n.js";
+      initI18n();
+
+      const corporateLink = document.getElementById("corporate-inquiry-link");
+      function syncMailto() {
+        if (corporateLink) {
+          corporateLink.href = `mailto:theginlibrary@web.de?subject=${encodeURIComponent(t("corporateSubject"))}`;
         }
-      };
-
-      const toggle = document.getElementById("language-toggle");
-      const corporateInquiryLink = document.getElementById("corporate-inquiry-link");
-      const ginTastingLink = document.getElementById("gin-tasting-link");
-      let currentLanguage = "en";
-
-      function applyLanguage(language) {
-        const dictionary = translations[language];
-        document.documentElement.lang = language;
-
-        document.querySelectorAll("[data-i18n]").forEach((element) => {
-          const key = element.getAttribute("data-i18n");
-          if (dictionary[key]) {
-            element.textContent = dictionary[key];
-          }
-        });
-
-        corporateInquiryLink.href = `mailto:theginlibrary@web.de?subject=${encodeURIComponent(dictionary.corporateSubject)}`;
-        ginTastingLink.href = `mailto:theginlibrary@web.de?subject=${encodeURIComponent(dictionary.ginTastingSubject)}`;
-        toggle.textContent = dictionary.toggleLabel;
-        toggle.setAttribute("aria-label", dictionary.toggleAria);
       }
-
-      toggle.addEventListener("click", () => {
-        currentLanguage = currentLanguage === "en" ? "de" : "en";
-        applyLanguage(currentLanguage);
-      });
-
-      applyLanguage("en");
+      syncMailto();
+      onLocaleChange(syncMailto);
     </script>
   </body>
 </html>

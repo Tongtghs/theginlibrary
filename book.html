@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Book your seat at a gin tasting at The Gin Library in Aachen.">
+    <meta name="theme-color" content="#F0E6E6" />
+    <meta name="robots" content="noindex">
+    <title>Book · The Gin Library</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="page-overlay"></div>
+    <div class="container">
+      <div class="topbar">
+        <nav class="sub-nav">
+          <a class="link" href="/events.html" data-i18n="navEvents">Events</a>
+        </nav>
+        <button id="language-toggle" class="button lang-toggle" type="button" aria-label="Switch language to German">DE</button>
+      </div>
+
+      <header class="page-header">
+        <p class="eyebrow">The Gin Library</p>
+        <h1 class="page-title" data-i18n="bookingHeading">Book your seats</h1>
+      </header>
+
+      <main>
+        <p id="booking-status" class="events-empty" data-i18n="loadingEvent">Loading event…</p>
+
+        <div id="booking-form-container" hidden class="info-card booking-card">
+          <div class="booking-event">
+            <h2 id="booking-title" class="booking-event__title"></h2>
+            <p id="booking-date" class="booking-event__date"></p>
+            <p id="booking-desc" class="booking-event__desc"></p>
+          </div>
+
+          <form id="booking-form" class="booking-form" novalidate>
+            <label class="field">
+              <span class="field__label" data-i18n="fullName">Full name</span>
+              <input id="name" name="name" type="text" required autocomplete="name" maxlength="120">
+            </label>
+
+            <label class="field">
+              <span class="field__label" data-i18n="yourEmail">Email</span>
+              <input id="email" name="email" type="email" required autocomplete="email" maxlength="200">
+            </label>
+
+            <label class="field">
+              <span class="field__label" data-i18n="yourPhone">Phone (optional)</span>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40">
+            </label>
+
+            <label class="field">
+              <span class="field__label" data-i18n="seatsLabel">Number of seats</span>
+              <input id="seats" name="seats" type="number" min="1" max="20" value="2" required>
+            </label>
+
+            <div class="booking-total-row">
+              <span class="booking-total-label" data-i18n="totalLabel">Total</span>
+              <span id="booking-total" class="booking-total-amount"></span>
+            </div>
+
+            <div class="norefund">
+              <p class="norefund__heading" data-i18n="norefundHeading">No-refund policy</p>
+              <p class="norefund__text" data-i18n="norefundText">All bookings are final. Seats are non-refundable and non-transferable.</p>
+              <label class="checkbox">
+                <input id="accept" name="accept" type="checkbox" required>
+                <span data-i18n="acceptTerms">I have read and accept the no-refund policy.</span>
+              </label>
+            </div>
+
+            <p id="booking-error" class="booking-error" role="alert" hidden></p>
+
+            <div class="booking-actions">
+              <a class="button" href="/events.html" data-i18n="cancel">Cancel</a>
+              <button id="booking-submit" type="submit" class="button primary" data-i18n="proceedToPayment">Proceed to payment</button>
+            </div>
+          </form>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p data-i18n="footer">Discover curated gin tastings, bespoke cocktails, and cocktail catering for corporate events in and around Aachen.</p>
+      </footer>
+    </div>
+    <script type="module" src="/assets/js/booking.js"></script>
+  </body>
+</html>
